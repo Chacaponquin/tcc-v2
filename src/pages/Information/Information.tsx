@@ -8,9 +8,7 @@ export default function Information() {
   return (
     <GridLayout>
       <Top />
-
       <Content />
-
       <Bottom />
     </GridLayout>
   );

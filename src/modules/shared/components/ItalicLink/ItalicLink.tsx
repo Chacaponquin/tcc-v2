@@ -9,7 +9,7 @@ interface Props {
 export default function ItalicLink({ to, children }: Props) {
   return (
     <Link href={to} className="">
-      <i className="underline underline-offset-4 decoration-gray-400">
+      <i className="underline underline-offset-4 decoration-gray-300">
         {children}
       </i>
     </Link>

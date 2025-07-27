@@ -2,13 +2,13 @@ export interface Work {
   image: string;
 }
 
-export const WORKS: Work[] = [
+const WORKS: Work[] = [
   { image: "2 pre.jpg" },
   { image: "3 rojo.jpg" },
   { image: "4 verde.jpg" },
   { image: "5 azul.jpg" },
   { image: "6 negro.jpg" },
-  { image: "7 fina.jpg" },
+  { image: "7 final.jpg" },
   { image: "c1.jpg" },
   { image: "c2.jpg" },
   { image: "c3.jpg" },
@@ -60,3 +60,5 @@ export const WORKS: Work[] = [
   { image: "tres.jpg" },
   { image: "uno.jpg" },
 ];
+
+export default WORKS;
