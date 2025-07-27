@@ -1,4 +1,4 @@
-import Information from "@pages/Information/Information";
+import Information from "../../containers/Information/Information";
 import React from "react";
 
 export default function Page() {

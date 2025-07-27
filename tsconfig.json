@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@pages/*": ["./src/pages/*"],
+      "@pages/*": ["./src/containers/*"],
       "@modules/*": ["./src/modules/*"]
     }
   },
