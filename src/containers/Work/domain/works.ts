@@ -2,7 +2,7 @@ export interface Work {
   image: string;
 }
 
-const WORKS: Work[] = [
+export const WORKS: Work[] = [
   { image: "2 pre.jpg" },
   { image: "3 rojo.jpg" },
   { image: "4 verde.jpg" },
@@ -60,5 +60,3 @@ const WORKS: Work[] = [
   { image: "tres.jpg" },
   { image: "uno.jpg" },
 ];
-
-export default WORKS;

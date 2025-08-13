@@ -1,4 +1,4 @@
 export const APP_INFO = {
-  INSTAGRAM: `https://www.instagram.com/@crystalchapel`,
-  MAIL: `mailto:goodnews@crystalchapel.com`,
+  INSTAGRAM: `https://www.instagram.com/@thecrystalchapel`,
+  MAIL: `mailto:crystalchapel@icloud.com`,
 };
