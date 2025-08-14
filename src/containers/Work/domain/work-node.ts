@@ -1,3 +1,9 @@
 import { Node } from "@xyflow/react";
 
-export type WorkNode = Node<{ image: string }>;
+export type WorkNodeProps = {
+  image: string;
+  onClick: () => void;
+  title: string;
+};
+
+export type WorkNode = Node<WorkNodeProps>;

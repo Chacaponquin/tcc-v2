@@ -3,14 +3,19 @@ import { WorkNode } from "./work-node";
 
 interface Props {
   data: Work;
+  onSelect: (v: Work) => void;
 }
 
 export class WorkNodeBuilder {
-  static execute({ data }: Props): WorkNode {
+  static execute({ data, onSelect }: Props): WorkNode {
     return {
-      data: data,
+      data: {
+        image: data.image,
+        onClick: () => onSelect(data),
+        title: "Buenas",
+      },
       id: crypto.randomUUID(),
-      draggable: true,
+      draggable: false,
       type: "custom",
       position: { x: 100, y: 500 },
     };
