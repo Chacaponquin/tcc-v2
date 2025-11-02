@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { ReactFlow, useNodesState, useReactFlow } from "@xyflow/react";
 import WorkCard from "./components/WorkCard/WorkCard";
 import { WorkNodeBuilder } from "@pages/Work/domain/work-node-builder";
 import { Work, WORKS } from "@pages/Work/domain/works";
-import { WorkNodesPositionsBuilder } from "@pages/Work/domain/work-nodes-positions-builder";
 
 import "@xyflow/react/dist/style.css";
 
@@ -17,9 +16,14 @@ interface Props {
   onSelect: (v: Work) => void;
 }
 
-type Translate = [[number, number], [number, number]];
+const nodeWidth = 180;
+const nodeHeight = 220;
+const gap = 60;
+const cols = 7;
 
 export default function Playground({ onSelect }: Props) {
+  const { setCenter } = useReactFlow();
+
   useEffect(() => {
     const el = document.querySelector("[href='https://reactflow.dev']");
 
@@ -29,39 +33,34 @@ export default function Playground({ onSelect }: Props) {
   }, []);
 
   const buildNodes = useCallback(() => {
-    const nodes = WORKS.map((w) =>
-      WorkNodeBuilder.execute({ data: w, onSelect: onSelect })
+    const nodes = WORKS.map((w, index) =>
+      WorkNodeBuilder.execute({
+        data: w,
+        cols: cols,
+        nodeWidth: nodeWidth,
+        nodeHeight: nodeHeight,
+        gap: gap,
+        index: index,
+        onSelect: onSelect,
+      })
     );
 
-    const positionBuilder = new WorkNodesPositionsBuilder(nodes, {
-      height: 220,
-      width: 180,
-    });
-
-    const result = positionBuilder.execute({
-      areaSize: 2400,
-      minDistance: 150,
-    });
-
-    return result;
+    return nodes;
   }, [onSelect]);
 
-  const { fitView, getNodesBounds } = useReactFlow();
-
   const [nodes, _, onNodesChange] = useNodesState(buildNodes());
-  const [translateExtent, setTranslateExtent] = useState<Translate | null>(
-    null
-  );
 
   useEffect(() => {
-    const bounds = getNodesBounds(nodes);
+    if (nodes.length > 0) {
+      // Calcular el ancho total del grid
+      const totalWidth = cols * (nodeWidth + gap) - gap;
+      const centerX = totalWidth / 2;
 
-    // Limitar el pan a los bounds de los nodos (con un poco de margen)
-    setTranslateExtent([
-      [bounds.x - 50, bounds.y - 50],
-      [bounds.x + bounds.width + 50, bounds.y + bounds.height + 50],
-    ]);
-  }, [nodes, fitView, getNodesBounds]);
+      // Centrar solo en X, Y se posiciona cerca del inicio
+      // Ajusta el valor de Y según necesites (más alto = más abajo)
+      setCenter(centerX, nodeHeight * 2, { zoom: 1, duration: undefined });
+    }
+  }, [nodes.length, setCenter]);
 
   return (
     <div className="w-full flex flex-grow flex-col">
@@ -72,8 +71,7 @@ export default function Playground({ onSelect }: Props) {
         onNodesChange={onNodesChange}
         nodesConnectable={false}
         nodesDraggable={false}
-        fitView={true}
-        translateExtent={translateExtent ? translateExtent : undefined}
+        fitView={false}
       ></ReactFlow>
     </div>
   );

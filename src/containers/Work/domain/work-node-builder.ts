@@ -4,10 +4,26 @@ import { WorkNode } from "./work-node";
 interface Props {
   data: Work;
   onSelect: (v: Work) => void;
+  cols: number;
+  nodeWidth: number;
+  nodeHeight: number;
+  gap: number;
+  index: number;
 }
 
 export class WorkNodeBuilder {
-  static execute({ data, onSelect }: Props): WorkNode {
+  static execute({
+    data,
+    onSelect,
+    cols,
+    gap,
+    nodeHeight,
+    nodeWidth,
+    index,
+  }: Props): WorkNode {
+    const row = Math.floor(index / cols);
+    const col = index % cols;
+
     return {
       data: {
         image: data.image,
@@ -17,7 +33,10 @@ export class WorkNodeBuilder {
       id: crypto.randomUUID(),
       draggable: false,
       type: "custom",
-      position: { x: 100, y: 500 },
+      position: {
+        x: col * (nodeWidth + gap),
+        y: row * (nodeHeight + gap),
+      },
     };
   }
 }

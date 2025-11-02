@@ -20,7 +20,7 @@ export default function Work() {
     >
       {selected && <ViewWork />}
 
-      <header className="w-max pb-10 h-max">
+      <header className="w-max pb-14 h-max">
         <BasicInfo links={{ home: true, info: true, work: false }} />
       </header>
 
