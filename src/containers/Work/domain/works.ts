@@ -1,62 +1,48 @@
-export interface Work {
-  image: string;
+interface Props {
+  title: string;
+  folder: string;
+  count: number;
+}
+
+export class Work {
+  readonly title: string;
+  readonly folder: string;
+  readonly count: number;
+
+  constructor({ folder, title, count }: Props) {
+    this.folder = `/works/${folder}`;
+    this.title = title;
+    this.count = count;
+  }
+
+  get cover() {
+    return this.images[0];
+  }
+
+  get images(): string[] {
+    const result: string[] = [];
+
+    for (const img of Array.from({ length: this.count }, (_, i) => i + 1)) {
+      result.push(`${this.folder}/${img}.jpg`);
+    }
+
+    return result;
+  }
 }
 
 export const WORKS: Work[] = [
-  { image: "2 pre.jpg" },
-  { image: "3 rojo.jpg" },
-  { image: "4 verde.jpg" },
-  { image: "5 azul.jpg" },
-  { image: "6 negro.jpg" },
-  { image: "7 final.jpg" },
-  { image: "c1.jpg" },
-  { image: "c2.jpg" },
-  { image: "c3.jpg" },
-  { image: "c4.jpg" },
-  { image: "c5.jpg" },
-  { image: "c6.jpg" },
-  { image: "E 0 b&w.jpg" },
-  { image: "E 0.jpg" },
-  { image: "E 1 b&w.jpg" },
-  { image: "E 1.jpg" },
-  { image: "E 2 b&w.jpg" },
-  { image: "E 2.jpg" },
-  { image: "E 3 b&w.jpg" },
-  { image: "E 3.jpg" },
-  { image: "E 4 b&w.jpg" },
-  { image: "E 4.jpg" },
-  { image: "E A 1.jpg" },
-  { image: "E A.jpg" },
-  { image: "eden 2.jpg" },
-  { image: "eden 3.jpg" },
-  { image: "eden 4.jpg" },
-  { image: "eden 5.jpg" },
-  { image: "fp.jpg" },
-  { image: "fp4.jpg" },
-  { image: "fpho.jpg" },
-  { image: "fphot.jpg" },
-  { image: "fpo.jpg" },
-  { image: "lns.jpg" },
-  { image: "mask.jpg" },
-  { image: "pill 1.jpg" },
-  { image: "pill.jpg" },
-  { image: "post 4x3 1.jpg" },
-  { image: "post 4x3 2.jpg" },
-  { image: "TATTOO.jpg" },
-  { image: "the dove 1.jpg" },
-  { image: "the dove 2.jpg" },
-  { image: "the dove 3 B&W fp.jpg" },
-  { image: "the dove 3 B&W.jpg" },
-  { image: "the dove 3 fp.jpg" },
-  { image: "the dove 3.jpg" },
-  { image: "the dove TATTO b&w fp.jpg" },
-  { image: "the dove TATTO b&w.jpg" },
-  { image: "the dove TATTO.jpg" },
-  { image: "tree 2024 meaning I.jpg" },
-  { image: "tree 2024.jpg" },
-  { image: "tree b 3.jpg" },
-  { image: "tree r 4.jpg" },
-  { image: "tree v 3.jpg" },
-  { image: "tres.jpg" },
-  { image: "uno.jpg" },
+  new Work({ title: "Champ", count: 4, folder: "champ" }),
+  new Work({ title: "Cuadro", folder: "cuadro", count: 1 }),
+  new Work({ title: "Eden", folder: "eden", count: 4 }),
+  new Work({ title: "Fire", folder: "fire", count: 9 }),
+  new Work({ title: "Hear", folder: "heart", count: 8 }),
+  new Work({ title: "Helmet", folder: "helmet", count: 9 }),
+  new Work({ title: "Mask", folder: "mask", count: 1 }),
+  new Work({ title: "Meaning", folder: "meaning", count: 2 }),
+  new Work({ title: "Photoshop", folder: "photoshop", count: 1 }),
+  new Work({ title: "Pill", folder: "pill", count: 2 }),
+  new Work({ title: "Stickers", folder: "stickers", count: 2 }),
+  new Work({ title: "Tree", folder: "tree", count: 5 }),
+  new Work({ title: "Uno", folder: "uno", count: 6 }),
+  new Work({ title: "Vacant", folder: "vacant", count: 2 }),
 ];

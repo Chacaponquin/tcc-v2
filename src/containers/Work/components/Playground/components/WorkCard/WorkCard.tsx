@@ -13,7 +13,7 @@ export default function WorkCard({ data: { image, onClick, title } }: Props) {
     >
       <Image
         className="md:h-[220px] h-[200px] w-full object-contain"
-        src={`/works/${image}`}
+        src={image}
         alt={title}
         width={200}
         height={400}

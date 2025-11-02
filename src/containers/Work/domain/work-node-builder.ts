@@ -26,9 +26,9 @@ export class WorkNodeBuilder {
 
     return {
       data: {
-        image: data.image,
+        image: data.cover,
         onClick: () => onSelect(data),
-        title: "Buenas",
+        title: data.cover,
       },
       id: crypto.randomUUID(),
       draggable: false,
