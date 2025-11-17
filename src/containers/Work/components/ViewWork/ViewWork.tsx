@@ -25,9 +25,8 @@ export default function ViewWork({ onClose, work }: Props) {
   const FORM_CLASS = clsx(
     "flex flex-col",
     "w-full max-h-full",
-    "bg-white",
+    "bg-transparent",
     "px-7 py-6",
-    "shadow-lg",
     "overflow-auto",
     "animate-duration-500",
     "h-max",
@@ -37,7 +36,7 @@ export default function ViewWork({ onClose, work }: Props) {
   return (
     <div className={CLASS} onClick={onClose}>
       <div
-        style={{ maxWidth: `860px` }}
+        style={{ maxWidth: `1000px` }}
         className={FORM_CLASS}
         onClick={(e) => e.stopPropagation()}
       >
@@ -47,7 +46,7 @@ export default function ViewWork({ onClose, work }: Props) {
           width={600}
           height={400}
           loading="eager"
-          className="object-contain w-full max-h-[500px]"
+          className="object-contain w-full max-h-[550px]"
         />
 
         {work.images.length > 1 && (

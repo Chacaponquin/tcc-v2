@@ -19,7 +19,7 @@ interface Props {
 const nodeWidth = 180;
 const nodeHeight = 220;
 const gap = 60;
-const cols = 7;
+const cols = 5;
 
 export default function Playground({ onSelect }: Props) {
   const { setCenter } = useReactFlow();
